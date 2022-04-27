@@ -34,7 +34,8 @@ func readFile(fileName string) []string {
 		os.Exit(0)
 	}
 	// fmt.Println(string(bytes))
-	text := strings.Split(string(bytes), "\r\n")
+	// text := strings.Split(string(bytes), "\n")
+	text := strings.Split(string(bytes), "\n")
 	// fmt.Println(text)
 	return text
 }

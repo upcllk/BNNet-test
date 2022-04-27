@@ -13,16 +13,12 @@ variable D {
   type discrete [ 2 ] { True, False };
 }
 probability ( A ) {
-  table 0.9, 0.1;
+  table 0.8, 0.2;
 }
 probability ( B ) {
-  table 0.2, 0.8;
+  table 0.4, 0.6;
 }
-probability ( C | A ) {
-  (True) 0.1, 0.9;
-  (False) 0.8, 0.2;
-}
-probability ( D | A, B ) {
+probability ( C | A, B ) {
   (True, True) 0.1, 0.9;
   (False, True) 0.7, 0.3;
   (True, False) 0.8, 0.2;

@@ -3,6 +3,7 @@ package testUtil
 import (
 	"bufio"
 	"fmt"
+	"math/rand"
 	"os"
 
 	. "../netFrame"
@@ -58,15 +59,20 @@ func generate_single_data(order []string) string {
 				产生 index 为下标，对应值为
 			*/
 			condKeys := get_keys_from_status(cur, dic)
-			fmt.Println("***************", "condKeys : ", condKeys, "***************")
+			// fmt.Println("***************", "condKeys : ", condKeys, "***************")
 			for _, key := range condKeys {
 				prob = append(prob, MainNet.ConditionalProb[cur][key])
 			}
 		}
-		fmt.Println("CUR : ", cur, "\nPROB : ", prob)
+		// fmt.Println("CUR : ", cur, "\nPROB : ", prob)
 		dic[cur] = get_random_index_from_status(cur, prob)
 	}
 	var result string
+	for _, variable := range MainNet.Variables {
+		result += (MainNet.Values[variable][dic[variable]] + ",")
+	}
+	result = result[:len(result)-1]
+	// fmt.Println("RESULT : ", result)
 	return result
 }
 
@@ -86,10 +92,20 @@ func get_keys_from_status(cur string, dic map[string]int) []string {
 
 func get_random_index_from_status(cur string, prob [][]float64) int {
 	new_prob := merge_prob(prob)
-	fmt.Println("merge prob : ", new_prob)
+	// fmt.Println("merge prob : ", new_prob)
+	target := rand.Float64()
+	for i := 0; i < len(new_prob); i++ {
+		if target <= new_prob[i] {
+			return i
+		}
+		target -= new_prob[i]
+	}
+	fmt.Println("error while get random index")
+	os.Exit(114514)
 	return 0
 }
 
+// 想多了这个好像没啥用
 func merge_prob(ori [][]float64) []float64 {
 	if len(ori) == 0 {
 		fmt.Println("error while merge prob")
