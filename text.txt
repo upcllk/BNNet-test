@@ -1,0 +1,39 @@
+--values--
+ map[Alarm:[True False] Burglary:[True False] Earthquake:[True False] JohnCalls:[True False] MaryCalls:[True False]]
+--parents--
+ map[Alarm:[Burglary Earthquake] Burglary:[] Earthquake:[] JohnCalls:[Alarm] MaryCalls:[Alarm]]
+--childred--
+ map[Alarm:[JohnCalls MaryCalls] Burglary:[Alarm] Earthquake:[Alarm] JohnCalls:[] MaryCalls:[]]
+--influenced--
+ map[Alarm:[[Burglary Earthquake]] Burglary:[] Earthquake:[] JohnCalls:[[Alarm]] MaryCalls:[[Alarm]]]
+--priorprob--
+ map[Alarm:map[] Burglary:map[False:0.99 True:0.01] Earthquake:map[False:0.98 True:0.02] JohnCalls:map[] MaryCalls:map[]]
+--condprob--
+Earthquake
+Alarm
+Alarm:False|Burglary:True,Earthquake:True 0.05
+Alarm:True|Burglary:False,Earthquake:True 0.29
+Alarm:False|Burglary:False,Earthquake:True 0.71
+Alarm:True|Burglary:True,Earthquake:False 0.94
+Alarm:False|Burglary:True,Earthquake:False 0.06
+Alarm:True|Burglary:False,Earthquake:False 0.001
+Alarm:False|Burglary:False,Earthquake:False 0.999
+Alarm:True|Burglary:True,Earthquake:True 0.95
+JohnCalls
+JohnCalls:True|Alarm:False 0.05
+JohnCalls:False|Alarm:False 0.95
+Alarm:False|Burglary:True,Earthquake:False 0.06
+Alarm:True|Burglary:False,Earthquake:False 0.001
+Alarm:False|Burglary:False,Earthquake:False 0.999
+Alarm:True|Burglary:True,Earthquake:True 0.95
+JohnCalls
+JohnCalls:True|Alarm:False 0.05
+JohnCalls:False|Alarm:False 0.95
+JohnCalls:True|Alarm:True 0.9
+JohnCalls:False|Alarm:True 0.1
+MaryCalls
+MaryCalls:False|Alarm:False 0.99
+MaryCalls:True|Alarm:True 0.7
+MaryCalls:False|Alarm:True 0.3
+MaryCalls:True|Alarm:False 0.01
+Burglary
